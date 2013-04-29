@@ -1,5 +1,5 @@
 {
-    "name": "ezimuel/zendservice-api",
+    "name": "zendframework/zendservice-api",
     "description": "Micro framework for HTTP API client",
     "type": "library",
     "keywords": [
@@ -12,12 +12,6 @@
             "ZendService\\Api\\": "library/"
         }
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url" : "http://packages.zendframework.com/"
-        }
-    ],
     "require": {
         "php": ">=5.3.3",
         "zendframework/zend-http": ">=2.1.4"
