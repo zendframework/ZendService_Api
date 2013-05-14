@@ -17,4 +17,3 @@ return array(
         'valid_codes' => array('200')
     )
 );
-

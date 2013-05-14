@@ -12,91 +12,91 @@ namespace ZendService\Api;
 use Zend\Http\Client as HttpClient;
 
 /**
- * Class to consume generic API calls using HTTP 
- * 
+ * Class to consume generic API calls using HTTP
+ *
  * The specification of the API calls are managed by configuration files
  * using PHP associative array
- *  
+ *
  */
-class Api {
-    
+class Api
+{
     /**
      * Folder path of the API calls
-     * 
-     * @var string 
+     *
+     * @var string
      */
     protected $apiPath;
-    
+
     /**
      * Error message of the last HTTP call
-     * 
-     * @var string 
+     *
+     * @var string
      */
     protected $errorMsg;
-    
+
     /**
      * Status code of the last HTTP call
-     * 
-     * @var integer 
+     *
+     * @var integer
      */
     protected $statusCode;
-    
+
     /**
      * Success of the last HTTP call
-     * 
-     * @var boolean 
+     *
+     * @var boolean
      */
     protected $success = false;
-    
+
     /**
      * Basepoint URL
-     * 
-     * @var string 
+     *
+     * @var string
      */
     protected $url = null;
-    
+
     /**
      * Query parameters of the HTTP call
-     * 
-     * @var array 
+     *
+     * @var array
      */
     protected $queryParams = array();
-    
+
     /**
      * Default headers to be used during the HTTP call
-     * 
-     * @var array 
+     *
+     * @var array
      */
     protected $headers = array();
-    
+
     /**
      * HTTP request specification for an API call
-     * 
-     * @var array 
+     *
+     * @var array
      */
     protected $api = array();
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param  HttpClient $httpClient
-     * @throws Exception\InvalidArgumentException 
+     * @throws Exception\InvalidArgumentException
      */
     public function __construct(HttpClient $httpClient = null)
     {
         $this->setHttpClient($httpClient ?: new HttpClient);
     }
-    
+
     /**
      * Call a webservice
-     * 
+     *
      * @param  string $name
      * @param  mixed $params
-     * @throws Exception\InvalidArgumentException 
+     * @throws Exception\InvalidArgumentException
      * @return array|string|boolean
      */
     public function __call($name, $params)
-    {       
+    {
         // API specifications
         if (!empty($this->api[$name])) {
             $api = $this->api[$name]($params);
@@ -109,14 +109,14 @@ class Api {
                     };
                     $api = $apiFunc($params);
                 }
-            } 
+            }
         }
         if (empty($api)) {
             throw new Exception\RuntimeException(
                 "The HTTP request specification for the API $name is empty. I cannot proceed without it."
             );
         }
-        
+
         // Build HTTP request
         $client = $this->getHttpClient();
         $client->resetParameters();
@@ -157,7 +157,7 @@ class Api {
         if (isset($api['response']['valid_codes'])) {
             $validCodes = $api['response']['valid_codes'];
         }
-        
+
         // Send HTTP request
         $response         = $client->send();
         $this->statusCode = $response->getStatusCode();
@@ -176,12 +176,12 @@ class Api {
         $this->success  = false;
         return false;
     }
-    
+
     /**
      * Set the API path
-     * 
+     *
      * @param  string $apiPath
-     * @throws Exception\InvalidArgumentException 
+     * @throws Exception\InvalidArgumentException
      */
     public function setApiPath($apiPath)
     {
@@ -191,42 +191,42 @@ class Api {
         $this->apiPath = $apiPath;
         return $this;
     }
-    
+
     /**
      * Get the API path
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getApiPath()
     {
         return $this->apiPath;
     }
-    
+
     /**
      * Set the basepoint URL
-     * 
+     *
      * @param  string $url
-     * @return Api 
+     * @return Api
      */
     public function setUrl($url = null)
     {
         $this->url = $url;
         return $this;
     }
-    
+
     /**
      * Get the basepoint URL
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function getUrl()
     {
         return $this->url;
     }
-    
+
     /**
      * Set the HTTP query params
-     * 
+     *
      * @param  array $query
      * @return Api
      */
@@ -235,39 +235,39 @@ class Api {
         $this->queryParams = $query;
         return $this;
     }
-    
+
     /**
      * Get the HTTP query params
-     * 
-     * @return array 
+     *
+     * @return array
      */
     public function getQueryParams()
     {
         return $this->queryParams;
     }
-    
+
     /**
      * Set the HTTP headers
-     * 
+     *
      * @param  array $headers
-     * @return Api 
+     * @return Api
      */
     public function setHeaders(array $headers = null)
     {
         $this->headers = $headers;
         return $this;
     }
-    
+
     /**
      * Get the HTTP headers
-     * 
-     * @return array 
+     *
+     * @return array
      */
     public function getHeaders()
     {
         return $this->headers;
     }
-    
+
     /**
      * @param  HttpClient $httpClient
      * @return Api
@@ -287,7 +287,7 @@ class Api {
     {
         return $this->httpClient;
     }
-    
+
     /**
      * Get the error msg of the last HTTP call
      *
@@ -307,25 +307,25 @@ class Api {
     {
         return $this->statusCode;
     }
-    
+
     /**
      * Success of the last HTTP call
-     * 
-     * @return boolean 
+     *
+     * @return boolean
      */
     public function isSuccess()
     {
         return $this->success;
     }
-    
+
     /**
      * Set the HTTP request specficiation for the API $name
-     * 
+     *
      * @param  string $name
      * @param  callback $api
-     * @return Api 
+     * @return Api
      */
-    public function setApi($name, $api) 
+    public function setApi($name, $api)
     {
         if (!is_string($name)) {
             throw new Exception\InvalidArgumentException("The name of the API must be a string");
@@ -336,12 +336,12 @@ class Api {
         $this->api[$name] = $api;
         return $this;
     }
-    
+
     /**
      * Get the HTTP request specification of the API $name
-     * 
+     *
      * @param  string $name
-     * @return array 
+     * @return array
      */
     public function getApi($name)
     {
