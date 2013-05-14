@@ -3,9 +3,8 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Service
  */
 namespace ZendService\Api;
 
@@ -16,7 +15,6 @@ use Zend\Http\Client as HttpClient;
  *
  * The specification of the API calls are managed by configuration files
  * using PHP associative array
- *
  */
 class Api
 {
@@ -44,7 +42,7 @@ class Api
     /**
      * Success of the last HTTP call
      *
-     * @var boolean
+     * @var bool
      */
     protected $success = false;
 
@@ -93,7 +91,7 @@ class Api
      * @param  string $name
      * @param  mixed $params
      * @throws Exception\InvalidArgumentException
-     * @return array|string|boolean
+     * @return array|string|bool
      */
     public function __call($name, $params)
     {
@@ -206,7 +204,7 @@ class Api
      * Set the basepoint URL
      *
      * @param  string $url
-     * @return Api
+     * @return self
      */
     public function setUrl($url = null)
     {
@@ -228,7 +226,7 @@ class Api
      * Set the HTTP query params
      *
      * @param  array $query
-     * @return Api
+     * @return self
      */
     public function setQueryParams(array $query = null)
     {
@@ -250,7 +248,7 @@ class Api
      * Set the HTTP headers
      *
      * @param  array $headers
-     * @return Api
+     * @return self
      */
     public function setHeaders(array $headers = null)
     {
@@ -270,7 +268,7 @@ class Api
 
     /**
      * @param  HttpClient $httpClient
-     * @return Api
+     * @return self
      */
     public function setHttpClient(HttpClient $httpClient)
     {
@@ -311,7 +309,7 @@ class Api
     /**
      * Success of the last HTTP call
      *
-     * @return boolean
+     * @return bool
      */
     public function isSuccess()
     {
@@ -322,8 +320,8 @@ class Api
      * Set the HTTP request specficiation for the API $name
      *
      * @param  string $name
-     * @param  callback $api
-     * @return Api
+     * @param  callable $api
+     * @return self
      */
     public function setApi($name, $api)
     {
@@ -351,7 +349,7 @@ class Api
     /**
      * Reset the result of the last response
      *
-     * @return Api
+     * @return self
      */
     public function resetLastResponse()
     {
@@ -369,10 +367,10 @@ class Api
     public function getResponseHeaders()
     {
         $response = $this->httpClient->getResponse();
-        if (!empty($response)) {
-            return $response->getHeaders()->toArray();
+        if (empty($response)) {
+            return array();
         }
-        return array();
-    }
 
+        return $response->getHeaders()->toArray();
+    }
 }
