@@ -141,7 +141,20 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->api->isSuccess());
         $this->assertEquals('This is a test!', $result);
     }
-    
+
+    public function testResponseHeadersEmpty()
+    {
+        $headers = $this->api->getResponseHeaders();
+        $this->assertTrue(is_array($headers));
+        $this->assertEquals(array(), $headers);
+    }
+
+    public function testResponseHeaders()
+    {
+        $result = $this->api->test('foo','bar');
+        $this->assertTrue(is_array($this->api->getResponseHeaders()));
+    }
+
     public function testError()
     {
         $result = $this->api->test('foo', 'bar');

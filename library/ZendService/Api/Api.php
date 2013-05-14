@@ -360,4 +360,19 @@ class Api {
         $this->statusCode = null;
         return $this;
     }
+
+    /**
+     * Get the response headers of the last HTTP call
+     *
+     * @return array
+     */
+    public function getResponseHeaders()
+    {
+        $response = $this->httpClient->getResponse();
+        if (!empty($response)) {
+            return $response->getHeaders()->toArray();
+        }
+        return array();
+    }
+
 }
