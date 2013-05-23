@@ -53,7 +53,7 @@ use ZendService\Api\Api;
 $api = new Api();
 $api->setApi('auth', function ($params) {
     return array(
-        'uri' => 'http://localhost/v1/auth',
+        'url' => 'http://localhost/v1/auth',
         'header' => array(
             'Content-Type' => 'application/json'
         ),
@@ -97,7 +97,7 @@ For instance, for the previous example you have to create a `auth.php` file cont
 
 ```php
 return array(
-    'uri' => 'http://localhost/v1/auth',
+    'url' => 'http://localhost/v1/auth',
     'header' => array(
         'Content-Type' => 'application/json'
     ),
@@ -141,10 +141,10 @@ we can set this address as base URL and use relative address for each API call.
 use ZendService\Api\Api;
 
 $api = new Api();
-$api->setUri('http://identity.api.openstack.org');
+$api->setUrl('http://identity.api.openstack.org');
 $api->setApi('authentication', function ($params) {
     return array(
-        'uri' => '/v2.0/tokens',
+        'url' => '/v2.0/tokens',
         'header' => array(
             'Content-Type' => 'application/json'
         ),
