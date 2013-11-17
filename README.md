@@ -36,7 +36,7 @@ Let see an example, image you need to consume an authentication API call with a 
 a [JSON](http://www.json.org/) data format with the following parameters: username and password.
 The HTTP request can be represented as follow:
 
-    PUT /v1/auth HTTP/1.1
+    POST /v1/auth HTTP/1.1
     Host: localhost
     Connection: close
     Content-Type: application/json
