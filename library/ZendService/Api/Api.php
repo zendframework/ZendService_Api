@@ -3,12 +3,13 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 namespace ZendService\Api;
 
 use Zend\Http\Client as HttpClient;
+use ZendXml\Security as XmlSecurity;
 
 /**
  * Class to consume generic API calls using HTTP
@@ -165,7 +166,8 @@ class Api
                 if ($formatOutput === 'json') {
                     return json_decode($response->getBody(),true);
                 } elseif ($formatOutput === 'xml') {
-                    return json_decode(json_encode((array) simplexml_load_string($response->getBody())), 1);
+                	$xml = XmlSecurity::scan($response->getBody());
+                    return json_decode(json_encode((array) $xml), 1);
                 }
             }
             return $response->getBody();
