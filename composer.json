@@ -15,6 +15,6 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zend-http": ">=2.1.4",
-        "zendframework/zendxml": "dev-master"
+        "zendframework/zendxml": "~1.0-dev"
     }
 }
