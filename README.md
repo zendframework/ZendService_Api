@@ -1,14 +1,9 @@
-ZendService\Api 
+ZendService\Api
 ===============
 
 This is a micro HTTP framework to consume generic API calls in PHP. This framework can be used to
 create PHP libraries that consume specific HTTP API using simple configuration array (or files).
-This project uses the `Zend\Http\Client` component of [Zend Framework 2](https://github.com/zendframework/zf2).
-
-Release note
-------------
-
-This code is in *alpha* version, please don't use it in a production environment.
+This project uses the `zend-http` component of [Zend Framework](https://framework.zend.com).
 
 
 Installation
@@ -16,16 +11,15 @@ Installation
 
 You can install this component using [composer](http://getcomposer.org/) with following commands:
 
-```ssh
-curl -s https://getcomposer.org/installer | php
-php composer.phar install
+```bash
+compsoer require zendframework/zendservice-api
 ```
 
 Usage
 -----
 
-The `ZendService\Api` component can be used to facilitate the consume of generic API using HTTP.
-The micro HTTP framework is able to configure the header, method, body, and query string of a HTTP
+The `ZendService\Api` component can be used to facilitate the consume of generic APIs using HTTP.
+This micro framework is able to configure the header, method, body, and query string of a HTTP
 request according to specific API parameters. This mapping is provided using a special PHP configuration
 array.
 
@@ -86,7 +80,7 @@ The mapping with the `auth` arguments and the API specification is managed using
 You have to use the numerical index of the `$params` to match the order of the arguments in the function.
 Using the configuration array you can specify all the HTTP data for the API request (headers, body, uri, etc).
 You can also specify the HTTP status code for the successful requests using the `valid_codes` parameter
-in the `response` section. 
+in the `response` section.
 
 Using a configuration file
 --------------------------

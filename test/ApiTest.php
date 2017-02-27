@@ -13,12 +13,13 @@ namespace ZendServiceTest\Api;
 use ZendService\Api\Api;
 use Zend\Http\Client\Adapter\Test as HttpTest;
 use Zend\Http\Client as HttpClient;
+use PHPUnit_Framework_TestCase;
 
 /**
  * @category   Zend
  * @package    ZendService\Api
  */
-class ApiTest extends \PHPUnit_Framework_TestCase
+class ApiTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
@@ -33,18 +34,16 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function testConstruct()
+    public function testConstructWithoutParam()
     {
         $api = new Api();
-        $this->assertTrue($api->getHttpClient() instanceof HttpClient);
+        $this->assertTrue($api instanceof Api);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error
-     */
-    public function testFailConstruct()
+    public function testConstructWithParam()
     {
-        $api = new Api('test');
+        $api = new Api(new HttpClient);
+        $this->assertTrue($api instanceof Api);
     }
 
     /**
