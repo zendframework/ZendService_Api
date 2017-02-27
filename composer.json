@@ -7,6 +7,12 @@
         "zend",
         "api"
     ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev",
+            "dev-develop": "2.1-dev"
+        }
+    },
     "license": "BSD-3-Clause",
     "autoload": {
         "psr-4": {
