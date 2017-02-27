@@ -12,7 +12,7 @@ Installation
 You can install this component using [composer](http://getcomposer.org/) with following commands:
 
 ```bash
-compsoer require zendframework/zendservice-api
+composer require zendframework/zendservice-api
 ```
 
 Usage
