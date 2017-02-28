@@ -3,3 +3,5 @@ vendor
 .buildpath
 .project
 .settings/
+clover.xml
+coveralls-upload.json
