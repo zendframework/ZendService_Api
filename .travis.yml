@@ -38,4 +38,4 @@ script:
   - if [[ $EXECUTE_TEST_COVERALLS != 'true' ]]; then ./vendor/bin/phpunit ; fi
 
 after_script:
-  - if [[ $EXECUTE_TEST_COVERALLS == 'true' ]]; then ./vendor/bin/php-coveralls -v; fi
+  - if [[ $EXECUTE_TEST_COVERALLS == 'true' ]]; then travis_retry php vendor/bin/php-coveralls -v ; fi
