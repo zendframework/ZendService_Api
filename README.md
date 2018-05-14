@@ -1,7 +1,12 @@
 # zendservice-api
 
-[![Build Status](https://secure.travis-ci.org/zendframework/ZendService_Api.svg?branch=master)](https://secure.travis-ci.org/zendframework/ZendService_Api)
-[![Coverage Status](https://coveralls.io/repos/github/zendframework/ZendService_Api/badge.svg)](https://coveralls.io/github/zendframework/ZendService_Api)
+> ## Abandoned
+>
+> This component is abandoned and no longer maintained. We recommend using
+> [Guzzle](http://docs.guzzlephp.org/en/stable/index.html) (which has
+> [middleware features that enable API access](https://medium.com/@brad_brothers/build-a-better-api-client-with-guzzle-middleware-2ace56868dc7)),
+> and/or tools built on Guzzle (e.g., [Uhura](https://github.com/colindecarlo/uhura))
+> that provide generic API access features.
 
 **zendservice-api** is a micro HTTP framework to consume generic API calls in PHP.
 This framework can be used to create PHP libraries that consume specific HTTP
